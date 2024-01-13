@@ -1,4 +1,4 @@
-FROM node:16.13-alpine AS build
+FROM node:18.13-alpine AS build
 
 RUN npm install -g @ionic/cli@6.19.0
 RUN npm install -g http-server
