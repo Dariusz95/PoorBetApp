@@ -1,0 +1,22 @@
+FROM node:16.13-alpine AS build
+
+RUN npm install -g @ionic/cli@6.19.0
+RUN npm install -g http-server
+
+# Install jq
+RUN apk add jq
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install project dependencies
+RUN npm install
+
+# Expose the necessary ports
+EXPOSE 4200
+
+# Start the development server with hot reload
+CMD ["npm", "run", "start:dev"]
