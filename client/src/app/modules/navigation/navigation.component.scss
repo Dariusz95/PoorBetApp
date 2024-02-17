@@ -1,0 +1,25 @@
+@import "_vars";
+
+.drawer-container {
+  width: 200px;
+  height: 100vh;
+}
+
+.custom-toolbar {
+  width: 100%;
+  top: 0;
+  background: transparent;
+  position: fixed;
+  position: -webkit-sticky;
+  z-index: 1000;
+  background: #0000004b;
+  border-bottom: 3px solid #c000ff70;
+}
+
+.menu-item {
+  transition: 0.3s;
+}
+
+.menu-item:hover {
+  color: $light-blue-text-color;
+}

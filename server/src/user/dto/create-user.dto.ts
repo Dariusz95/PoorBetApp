@@ -1,8 +1,8 @@
 import {
-  IsAlphanumeric,
   IsNotEmpty,
   Matches,
   MinLength,
+  IsEmail
 } from 'class-validator';
 
 const passwordRegEx =
@@ -11,10 +11,11 @@ const passwordRegEx =
 export class CreateUserDto {
   @IsNotEmpty()
   @MinLength(3, { message: 'Username must have atleast 3 characters.' })
-  @IsAlphanumeric(null, {
-    message: 'Username does not allow other than alpha numeric chars.',
-  })
   username: string;
+
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
 
   @IsNotEmpty()
   @Matches(passwordRegEx, {

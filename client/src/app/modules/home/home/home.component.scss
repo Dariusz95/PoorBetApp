@@ -1,0 +1,60 @@
+@import "_vars";
+
+.custom-color {
+  color: $pink-color !important;
+}
+
+.register-button {
+  border: 2px solid $light-blue-text-color;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.register-button:hover {
+  background: #00b6ff54;
+  border-color: $pink-color;
+}
+
+.landing-page-container {
+  min-height: 100vh;
+  position: relative;
+  background: rgb(220, 37, 151);
+  background: linear-gradient(
+    156deg,
+    rgba(220, 37, 151, 1) 0%,
+    rgba(103, 24, 109, 1) 37%,
+    rgba(25, 16, 81, 1) 100%
+  );
+}
+
+.text-container {
+  color: #00b6ff;
+  &__header {
+    text-align: start;
+    font-family: monospace;
+  }
+
+  &__button {
+    margin-top: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #ad3db9;
+    font-weight: bold;
+    border-radius: 28px;
+    background: #ad3db9;
+    color: white;
+    padding: 14px 20px;
+  }
+
+  &__button:hover {
+    text-decoration: none;
+  }
+}
+
+.image-container {
+  &__background {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

@@ -11,6 +11,7 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(),
-  ],
+    provideAnimations()
+],
 };

@@ -1,6 +1,7 @@
 import { BeforeInsert, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { Entity } from 'typeorm/decorator/entity/Entity';
 import * as bcrypt from 'bcrypt';
+import { IsEmail, IsNotEmpty, Length } from "class-validator";
 
 @Entity()
 export class User {
@@ -12,6 +13,11 @@ export class User {
 
   @Column({ type: 'varchar' })
   password: string;
+
+  @Column({ name: 'email' })
+  @IsEmail({}, { message: 'Incorrect email' })
+  @IsNotEmpty({ message: 'The email is required' })
+  email!: string;
 
   @Column({ type: 'varchar', length: 15 })
   username: string;

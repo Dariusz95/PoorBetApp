@@ -1,0 +1,13 @@
+@import "_mixins";
+@import "_vars";
+
+.sign-in-container {
+  @include auth-background;
+  color: $light-blue-text-color;
+  min-height: 100vh;
+  position: relative;
+}
+
+.sign-in-card {
+  @include auth-card;
+}

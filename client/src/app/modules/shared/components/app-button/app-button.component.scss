@@ -1,0 +1,15 @@
+@import "_vars";
+
+.btn {
+  border: 2px solid $light-blue-text-color;
+  border-radius: 5px;
+  color: $light-blue-text-color;
+  font-weight: 400;
+  font-family: "Roboto";
+  transition: 0.3s;
+
+  &:hover {
+    border-color: $pink-color;
+    color: $pink-color;
+  }
+}

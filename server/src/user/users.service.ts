@@ -14,11 +14,11 @@ export class UsersService {
     const user: User = new User();
     user.username = createUserDto.username;
     user.password = createUserDto.password;
+    user.email = createUserDto.email;
     return this.userRepository.save(user);
   }
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.userRepository.findOne({ where: { username } });
-    // return this.users.find((user) => user.username === username);
+  async findOne(email: string): Promise<User | undefined> {
+    return this.userRepository.findOne({ where: { email } });
   }
 }

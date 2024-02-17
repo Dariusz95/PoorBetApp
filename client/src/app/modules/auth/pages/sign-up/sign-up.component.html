@@ -1,0 +1,160 @@
+<div
+  class="flex items-center justify-center flex-auto min-w-0 sign-up-container"
+>
+  <div
+    class="w-auto py-12 px-8 rounded-2xl shadow bg-card max-w-md sign-up-card mt-32"
+  >
+    <div class="w-full max-w-160 max-sm:w-80 mx-auto sm:mx-0">
+      <!-- Logo -->
+      <div class="w-12">
+        <img
+          class="image-container__background"
+          src="assets/image/logo.png"
+          alt="logo"
+        />
+      </div>
+
+      <!-- Title -->
+      <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">
+        Zarejestruj się
+      </div>
+      <div class="flex items-baseline mt-0.5 font-medium">
+        <div>Posiadasz konto?</div>
+        <a class="ml-1 text-blue-600 hover:underline cursor-pointer"
+          >Zaloguj się
+        </a>
+      </div>
+
+      <!-- Sign Up form -->
+      <form
+        class="mt-8 max-w-md my-3"
+        [formGroup]="signUpForm"
+        #signUpNgForm="ngForm"
+      >
+        <!-- Username field -->
+        <mat-form-field class="w-full p-1">
+          <mat-label>Nazwa użytkownika</mat-label>
+          <input id="username" matInput formControlName="username" />
+          <mat-error *ngIf="signUpForm.get('username')?.hasError('required')">
+            Pole wymagane
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('username')?.hasError('minlength')">
+            Wymagane minimum 5 znaków
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Email field -->
+        <mat-form-field class="w-full p-1">
+          <mat-label>Email</mat-label>
+          <input id="email" matInput formControlName="email" />
+          <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+            Pole wymagane
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">
+            Proszę wprowadzić poprawny adres email
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password field -->
+        <mat-form-field class="w-full p-1">
+          <mat-label>Hasło</mat-label>
+          <input
+            id="password"
+            matInput
+            type="password"
+            formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+            Pole wymagane
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="signUpForm.get('password')?.hasError('passwordRequirements')"
+          >
+            Hasło musi zawierać co najmniej jedną dużą literę i jedną cyfrę
+          </mat-error> -->
+        </mat-form-field>
+
+        <div
+          *ngIf="
+            !signUpForm.get('password')?.valid &&
+            signUpForm.get('password')?.dirty
+          "
+          class="mb-4"
+        >
+          <ul>
+            @for (validator of passwordValidators; track validator) {
+            <li
+              [ngClass]="{
+                'valid-criteria': !signUpForm
+                  .get('password')
+                  ?.hasError(validator.validator),
+                'invalid-criteria': signUpForm
+                  .get('password')
+                  ?.hasError(validator.validator)
+              }"
+              class="text-sm"
+            >
+              {{ validator.message }}
+            </li>
+            }
+          </ul>
+        </div>
+
+        <!-- Confirm password field -->
+        <mat-form-field class="w-full p-1">
+          <mat-label>Potwierdź hasło </mat-label>
+          <input
+            id="confirm-password"
+            matInput
+            type="password"
+            [formControlName]="'confirmPassword'"
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            appDisableCopyPaste
+          />
+          <button
+            mat-icon-button
+            type="button"
+            (click)="hideConfirmPassword = !hideConfirmPassword"
+            matSuffix
+          >
+            <mat-icon>{{
+              hideConfirmPassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="signUpForm.get('confirmPassword')?.hasError('required')"
+          >
+            Pole wymagane
+          </mat-error>
+
+          <mat-error
+            *ngIf="
+              signUpForm.get('confirmPassword')?.hasError('passwordsMismatch')
+            "
+          >
+            Hasła się nie pokrywają
+          </mat-error>
+        </mat-form-field>
+        <div class="my-5">
+          <app-button
+            (btnClick)="register()"
+            text="Utwórz konto"
+            [isDisabled]="false"
+          ></app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

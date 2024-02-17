@@ -1,0 +1,80 @@
+<div
+  class="flex items-center justify-center flex-auto min-w-0 h-screen sign-in-container"
+>
+  <div
+    class="w-auto py-10 px-8 rounded-2xl shadow bg-card max-w-md sign-in-card"
+  >
+    <div class="w-full max-w-160 max-sm:w-80 mx-auto sm:mx-0">
+      <!-- Logo -->
+      <div class="w-12">
+        <img
+          class="image-container__background"
+          src="assets/image/logo.png"
+          alt="logo"
+        />
+      </div>
+
+      <!-- Title -->
+      <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">
+        Zaloguj się
+      </div>
+      <div class="flex items-baseline mt-0.5 font-medium">
+        <div>Nie masz konta?</div>
+        <a class="ml-1 text-blue-600 hover:underline cursor-pointer"
+          >Zarejestruj się
+        </a>
+      </div>
+
+      <!-- Sign Up form -->
+      <form
+        class="mt-8 max-w-xs"
+        [formGroup]="signUpForm"
+        #signUpNgForm="ngForm"
+      >
+        <!-- Email field -->
+        <mat-form-field class="w-full p-1">
+          <mat-label>Email</mat-label>
+          <input id="email" matInput formControlName="email" />
+          <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+            To pole jest wymagane
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">
+            Wprowadź poprawny email
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password field -->
+        <mat-form-field class="w-full p-1">
+          <mat-label>Hasło</mat-label>
+          <input
+            id="password"
+            matInput
+            type="password"
+            formControlName="password"
+            [type]="hide ? 'password' : 'text'"
+          />
+          <button
+            class="me-2"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+            To pole jest wymagane
+          </mat-error>
+        </mat-form-field>
+        <div class="my-5">
+          <app-button
+            (btnClick)="login()"
+            text="Zaloguj się"
+            [isDisabled]="!signUpForm.valid"
+          ></app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div>
+  <mat-toolbar class="custom-toolbar" color="primary">
+    <mat-toolbar-row class="!h-20 md:!h-28">
+      <button mat-icon-button (click)="drawer.toggle()" class="block md:hidden">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="hidden md:flex justify-between w-full items-center">
+        <div class="max-w-28">
+          <img
+            class="image-container__background"
+            src="assets/image/logo.png"
+            alt="fotballer photo"
+          />
+        </div>
+        <div class="flex">
+          @for (menu of menuElements; track menu.name) {
+          <a class="flex mx-4 menu-item" [routerLink]="menu.url" mat-button>
+            <mat-icon class="mx-2">{{ menu.icon }}</mat-icon>
+            {{ menu.name }}</a
+          >
+          }
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-drawer-container class="drawer-container" autosize fxFlexFill>
+    <mat-drawer #drawer class="z-50 mt-20 md:mt-28 w-1/2" mode="over">
+      <div class="flex flex-col flex-wrap">
+        @for (menu of menuElements; track menu.name) {
+        <a
+          class="flex mx-4 menu-item justify-center my-5"
+          [routerLink]="menu.url"
+          mat-button
+        >
+          <mat-icon class="mx-2">{{ menu.icon }}</mat-icon>
+          {{ menu.name }}</a
+        >
+        }
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

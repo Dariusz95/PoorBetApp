@@ -19,10 +19,14 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "@app/*": ["app/*"],
+      "@shared/*": ["src/app/modules/shared/*"],
+      "@environment/*": ["src/environment/*"],
+      "@auth/*": ["src/app/modules/auth/*"]
+    },
+    "types": ["@testing-library/jest-dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
