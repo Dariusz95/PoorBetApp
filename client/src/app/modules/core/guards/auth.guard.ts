@@ -4,7 +4,7 @@ import { AuthService } from '@auth/service/auth.service';
 import { map, take } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 
-export function authnGuard(): CanActivateFn {
+export function authGuard(): CanActivateFn {
   return () => {
     const authService: AuthService = inject(AuthService);
     const router: Router = inject(Router);

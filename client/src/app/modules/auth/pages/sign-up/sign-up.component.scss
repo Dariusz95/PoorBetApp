@@ -1,15 +1,15 @@
-@import "_mixins";
-@import "_vars";
+@use "_mixins";
+@use "_vars";
 
 .sign-up-container {
-  @include auth-background;
-  color: $light-blue-text-color;
+  @include mixins.auth-background;
+  color: vars.$light-blue-text-color;
   min-height: 100vh;
   position: relative;
 }
 
 .sign-up-card {
-  @include auth-card;
+  @include mixins.auth-card;
 }
 
 .valid-criteria {

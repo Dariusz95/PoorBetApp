@@ -1,0 +1,17 @@
+@if(isAuthenticated()){ ISAUTH }@else{
+
+<div class="flex">
+  <a class="flex mx-4" [routerLink]="'auth/sign-in'" mat-button>
+    <button class="user-panel-btn flex">
+      <mat-icon class="mx-2">login</mat-icon>
+      Zaloguj się
+    </button>
+  </a>
+  <a class="flex mx-4" [routerLink]="'auth/sign-up'" mat-button>
+    <button class="user-panel-btn sign-up flex">
+      <mat-icon class="mx-2">how_to_reg</mat-icon>
+      Zarejestruj się
+    </button>
+  </a>
+</div>
+}

@@ -1,19 +1,13 @@
-@import "./_vars.scss";
+@use "./_vars.scss";
 
 @mixin auth-background {
   background: rgb(220, 37, 151);
-  background: linear-gradient(
-    156deg,
-    rgba(220, 37, 151, 1) 0%,
-    rgba(103, 24, 109, 1) 37%,
-    rgba(25, 16, 81, 1) 100%
-  );
+  background: linear-gradient(358deg, #b93cff 0%, rgb(25, 16, 81) 100%);
 }
 
 @mixin auth-card {
-  background: rgba($white, 0.1);
-  // background: rgba(255, 255, 255, 0.85);
-  border-radius: 16px;
+  background: vars.$white;
+  border-radius: vars.$border-radius;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.7px);
   -webkit-backdrop-filter: blur(3.7px);

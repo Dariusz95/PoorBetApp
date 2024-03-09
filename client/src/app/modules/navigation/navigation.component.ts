@@ -4,14 +4,16 @@ import {
   Breakpoints,
 } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { menu } from './data/menu';
+import { authenticatedUserMenu, menu, notAuthenticatedUserMenu } from './data/menu';
 import { Observable, map } from 'rxjs';
+import { AuthService } from '@auth/service/auth.service';
+import { UserPanelComponent } from './components/user-panel/user-panel.component';
 
 @Component({
   selector: 'app-navigation',
@@ -23,15 +25,27 @@ import { Observable, map } from 'rxjs';
     MatIconModule,
     FlexLayoutModule,
     RouterModule,
+    UserPanelComponent
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent {
   isMobile = true;
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    public authService: AuthService
+  ) {}
 
-  menuElements = menu;
+  menuElements = menu
+
+  // menuElements = computed(() => {
+  //   if (this.authService.loggedIn()) {
+  //     return authenticatedUserMenu;
+  //   } else {
+  //     return notAuthenticatedUserMenu;
+  //   }
+  // });
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)

@@ -10,11 +10,14 @@ import { environment } from '@environment/environment.dev';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {
+    if (this.token) this.loggedIn.set(true);
+  }
 
   // loggedIn: WritableSignal<boolean> = signal(false);
 
-  loggedIn = computed(() => this.token);
+  loggedIn = signal(false);
+  // loggedIn = computed(() => this.token);
 
   baseUrl = environment.baseUrl;
   private _user!: User;
@@ -49,6 +52,7 @@ export class AuthService {
     if (username && userId && email) {
       this.setUserData({ username, userId, email });
       localStorage.setItem(accessToken, token);
+      this.loggedIn.set(true);
     }
   }
 
@@ -62,6 +66,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(accessToken);
+    this.loggedIn.set(false);
     this.setUserData({} as User);
   }
 }

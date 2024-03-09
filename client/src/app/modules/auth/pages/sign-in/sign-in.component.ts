@@ -65,7 +65,7 @@ export class SignInComponent {
   login() {
     const loginForm: LoginForm = this.signUpForm.value;
     this._authService.login(loginForm).subscribe(() => {
-      this._router.navigate(['/app/bet']);
+      this._router.navigate(['/']);
     });
   }
 }

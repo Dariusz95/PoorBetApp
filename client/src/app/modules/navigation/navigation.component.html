@@ -5,20 +5,23 @@
         <mat-icon>menu</mat-icon>
       </button>
       <div class="hidden md:flex justify-between w-full items-center">
-        <div class="max-w-28">
+        <a class="max-w-28" [routerLink]="['/']">
           <img
             class="image-container__background"
             src="assets/image/logo.png"
             alt="fotballer photo"
           />
-        </div>
-        <div class="flex">
-          @for (menu of menuElements; track menu.name) {
-          <a class="flex mx-4 menu-item" [routerLink]="menu.url" mat-button>
-            <mat-icon class="mx-2">{{ menu.icon }}</mat-icon>
-            {{ menu.name }}</a
-          >
-          }
+        </a>
+        <div class="flex justify-between w-full">
+          <div>
+            @for (menu of menuElements; track menu.name) {
+            <a class="flex mx-4 menu-item" [routerLink]="menu.url" mat-button>
+              <mat-icon class="mx-2">{{ menu.icon }}</mat-icon>
+              {{ menu.name }}</a
+            >
+            }
+          </div>
+          <app-user-panel></app-user-panel>
         </div>
       </div>
     </mat-toolbar-row>
@@ -40,7 +43,9 @@
       </div>
     </mat-drawer>
     <mat-drawer-content>
-      <router-outlet></router-outlet>
+      <div class="mt-4 lg:mt-28">
+        <router-outlet></router-outlet>
+      </div>
     </mat-drawer-content>
   </mat-drawer-container>
 </div>

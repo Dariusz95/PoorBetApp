@@ -1,4 +1,4 @@
-@import "_vars";
+@use "_vars";
 
 .drawer-container {
   width: 200px;
@@ -8,11 +8,10 @@
 .custom-toolbar {
   width: 100%;
   top: 0;
-  background: transparent;
+  background: #191051;
   position: fixed;
   position: -webkit-sticky;
   z-index: 1000;
-  background: #0000004b;
   border-bottom: 3px solid #c000ff70;
 }
 
@@ -21,5 +20,5 @@
 }
 
 .menu-item:hover {
-  color: $light-blue-text-color;
+  color: vars.$light-blue-text-color;
 }

@@ -1,0 +1,11 @@
+.user-panel-btn {
+  transition: 0.3s;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.user-panel-btn.sign-up {
+  background-color: #b93cff;
+  color: black;
+}
